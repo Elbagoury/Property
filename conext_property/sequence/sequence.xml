@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+    	
+        <record id="seq_reserved_property" model="ir.sequence">
+            <field name="name">Reservasi Property</field>
+            <field name="code">reserved_property</field>
+            <field name="prefix">PRT/RSV/</field>
+            <field name="padding">6</field>
+            <field name="company_id">1</field>
+        </record>
+        <record id="seq_booking_property" model="ir.sequence">
+            <field name="name">Booking Property</field>
+            <field name="code">booking_property</field>
+            <field name="prefix">PRT/BOOK/</field>
+            <field name="padding">6</field>
+            <field name="company_id">1</field>
+        </record>
+        
+        <record id="seq_sales_property" model="ir.sequence">
+            <field name="name">Sales Property</field>
+            <field name="code">property_sale</field>
+            <field name="prefix">PRT/SALES/</field>
+            <field name="padding">6</field>
+            <field name="company_id">1</field>
+        </record>
+ 	</data>
+</odoo>

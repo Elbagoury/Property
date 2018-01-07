@@ -1,0 +1,80 @@
+<odoo>
+  <data>						
+     <record id="property_harga_page_view_form" model="ir.ui.view">
+        <field name="name">property_harga_page_view_form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+        <xpath expr="//label[@for='purchase_ok']" position="after">
+		    <div name="options" groups="base.group_user">
+			<div>
+                <field name="property_ok"/>			
+				<label for="property_ok"/>
+			</div>
+			</div>
+        </xpath>
+            <xpath expr="//page[@name='notes']" position="after">			
+		                        <page string="Property" attrs="{'invisible':[('property_ok','=',False)]}" name="property">
+								<group>
+								<group name = "Umum">
+									<field name="address"/>
+									<field name="tipe" string="Type"/>
+									<field name="property_category_id" string="Cluster/Apartement/Hotel"/>		                   
+									<field name="company_id"/>
+								</group>
+								<group name = "Lokasi/Luas">
+										<group>
+				                        	<field name="property_view_id"/>
+						                    <field name="property_tower_id"/>
+						                    <field name="property_type_id"/>
+						                    <field name="property_jenis_id"/>
+						                    <field name="property_floor_id"/>
+					                    </group>
+					                    <group>
+					                    	<field name="direction"/>
+						                    <field name="bulding_area"/>
+						                    <field name="land_area"/>
+						                    <field name="nett_area"/>
+						                    <field name="semi_gross_area"/>
+					                    </group>
+								</group>
+								</group>
+								<group>						
+									<group name = "group_left" string="Status Jual">
+										<field name="available"/>
+										<field name="status"/>
+										<field name="owner_id"/>
+									</group>
+									<group name = "group_right" string="Status Sewa">
+										<field name="is_rent"/>
+										<field name="rent_available"/>
+									</group>
+								</group>
+		                        </page>								
+		                        <page string="Harga/Sewa" attrs="{'invisible':[('property_ok','=',False)]}" name="harga/sewa">
+		                        	<group>
+		                        		<field name="current_pricelist"/>
+		                        	</group>
+		                        	<field name="price_ids">
+		                        		<tree string="Daftar Harga Jual" editable="Top">
+		                        			<field name="date"/>
+						                    <field name="name"/>
+						                    <field name="net_price"/>
+		                        		</tree>
+		                        	</field>
+									<label for="rental_price_ids"/>		                        	
+		                        	<field name="rental_price_ids">
+		                        		<tree string="Daftar Harga Sewa" editable="Top">
+		                        			<field name="date"/>
+						                    <field name="deskripsi"/>
+						                    <field name="pricing_type"/>
+						                    <field name="price"/>
+		                        		</tree>
+		                        	</field>
+		                        </page>                        	
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>
