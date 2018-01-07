@@ -1,0 +1,4 @@
+[submodule "yoshin4g4/muk_web"]
+	path = yoshin4g4/muk_web
+	url = git@github.com:yoshin4g4/muk_web.git
+	branch = 11.0
