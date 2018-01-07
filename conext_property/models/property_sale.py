@@ -8,8 +8,8 @@ import odoo.addons.decimal_precision as dp
 
 try:
     from gdata.contentforshopping.data import Price
-except ImportError:
-    pass
+except ImportError as err:
+    _logger.debug(err)
 
 confirm =[('draft','Draft'),('booking','Booking Confirmed'),('waiting_manager','Waiting Manager Approve'),('confirm','SP Confirm'),('done','Done'),('cancel','Batal')]
 class property_sale(models.Model):
