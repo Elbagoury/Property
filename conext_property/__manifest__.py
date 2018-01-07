@@ -41,6 +41,7 @@
 #      'views/account_invoice_view.xml',
 #      'views/account_payment_view.xml',
     ],
+
     # only loaded in demonstration mode
     'demo': [
         #'demo/demo.xml',
@@ -48,4 +49,7 @@
     'installable': True,
     'application': True,
     'auto_install': False,	
+    'external_dependencies': {
+    'python': ['gdata']
+},
 }
