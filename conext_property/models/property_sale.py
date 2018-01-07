@@ -5,8 +5,11 @@ from odoo.tools.misc import formatLang
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
 import odoo.addons.decimal_precision as dp
-from gdata.contentforshopping.data import Price
 
+try:
+    from gdata.contentforshopping.data import Price
+except ImportError:
+    pass
 
 confirm =[('draft','Draft'),('booking','Booking Confirmed'),('waiting_manager','Waiting Manager Approve'),('confirm','SP Confirm'),('done','Done'),('cancel','Batal')]
 class property_sale(models.Model):
