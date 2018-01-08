@@ -58,6 +58,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">calendar,tree</field>    
     </record>
+
     
     <menuitem id="menu_account_payment_plan" name="Payment Plans"
             parent="account.menu_finance_receivables"

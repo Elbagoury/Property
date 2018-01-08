@@ -1,4 +1,4 @@
-from odoo import models, fields, api, _
+from odoo import api,fields,models,_
 from datetime import date
 
 class PaymentPlan(models.Model):
