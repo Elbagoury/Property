@@ -56,8 +56,6 @@
         <field name="name">Payment Plan</field>
         <field name="res_model">payment.plan</field>
         <field name="view_type">form</field>
-	<field name="view_id" ref="conext_payment_plan.view_payment_plan_tree"/>
-        <field name="form_view_id" ref="conext_payment_plan.view_payment_plan_form"/>
         <field name="view_mode">calendar,tree</field>    
     </record>
 
