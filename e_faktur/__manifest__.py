@@ -13,6 +13,8 @@
         'views/faktur_pajak.xml',
         'views/invoice_inherit_view.xml',
         'wizard/generate_faktur_view.xml',
+        'views/partner_sequence.xml',
+		'views/partner_view_inherit.xml',
     ],
     'css': [],
     'js': [
