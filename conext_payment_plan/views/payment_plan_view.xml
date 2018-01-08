@@ -58,6 +58,24 @@
         <field name="view_type">form</field>
         <field name="view_mode">calendar,tree</field>    
     </record>
+    <record id="action_action_payment_plan_tree" model="ir.actions.act_window">
+         <field name="sequence" eval="1"/>
+         <field name="view_mode">tree</field>
+         <field name="view_id" ref="view_payment_plan_tree"/>
+         <field name="act_window_id" ref="action_payment_plan"/> 
+    </record>	
+    <record id="action_view_payment_plan_form" model="ir.actions.act_window">
+         <field name="sequence" eval="2"/>
+         <field name="view_mode">form</field>
+         <field name="view_id" ref="view_payment_plan_form"/>
+         <field name="act_window_id" ref="action_payment_plan"/> 
+    </record>		
+    <record id="action_view_payment_plan_calendars" model="ir.actions.act_window">
+         <field name="sequence" eval="3"/>
+         <field name="view_mode">calendar</field>
+         <field name="view_id" ref="view_payment_plan_calendars"/>
+         <field name="act_window_id" ref="action_payment_plan"/> 
+    </record>
     
     <menuitem id="menu_account_payment_plan" name="Payment Plans"
             parent="account.menu_finance_receivables"
