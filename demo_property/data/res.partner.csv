@@ -1,0 +1,2 @@
+property_account_payable_id/id,property_account_receivable_id/id,invoice_warn,is_company,customer,supplier,npwp,name,street,street2,zip,property_purchase_currency_id/id,city,company_id/id,company_name,company_type,country_id/id,ref
+l10n_metro.1_2-110003,l10n_metro.1_1-119001,No Message,TRUE,FALSE,TRUE,01.335.808.0-407.001,PT ALFA RETAILINDO,"Jl. Ir. H. Juanda No,180 RT 003 / RW 010",,,,Kota Bekasi,base.main_company,,Company,base.id,S00001
