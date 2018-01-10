@@ -3,7 +3,7 @@
 
 
 
-<!--      <record id="view_PaymentPlan_form" model="ir.ui.view">
+      <record id="view_PaymentPlan_form" model="ir.ui.view">
             <field name="name">Property Payment Line Form</field>
             <field name="model">payment.plan</field>
             <field name="arch" type="xml">
@@ -31,7 +31,7 @@
                     </sheet>
                 </form>
             </field>
-        </record> -->
+        </record>
         
         
         
@@ -105,8 +105,8 @@
             <field name="arch" type="xml">
                 <form>
                    <header>
-                        <button name="button_confirmed" string="Konfirmasi" type="object" class="oe_highlight" states="draft"/>
-                        <button name="action_confirm_booking_fee" string="Konfirmasi Booking Fee" type="object" class="oe_highlight" states="booking"/>
+                        <button name="button_invoice" string="Buat Invoice" type="object" class="oe_highlight" states="draft"/>
+                        <button name="action_confirm" string="Konfirmasi" type="object" class="oe_highlight" states="invoice"/>
                         <button name="action_confirm_manager" string="Manager Approved" type="object" class="oe_highlight" states="waiting_manager"/>
                         <button name="button_cancel" string="Batal" type="object" class="oe_highlight" states="done,booking,waiting_manager,confirm"/>
                         <button name="set_draft" string="Set Draft" type="object" class="oe_highlight" states="cancel"/>
@@ -118,11 +118,12 @@
 	                        <group>
 		                      <field name="booking_id" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
 	                          <field name="partner_id" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
-							  <field name="invoice_id" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
-	                          <field name="date_spr" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
 	                          <field name="company_id" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>  
 	                        </group>
 	                        <group>
+							  <field name="date_spr" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+				              <field name="invoice_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+	                          <field name="sale_order_id" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
 <!--	                          <field name="is_ppjb" readonly="1"/>
 		                      <field name="is_bast" readonly="1"/> -->
 	                        </group>
@@ -150,8 +151,8 @@
 	                   </group>
 	                   <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
                             <field name="amount_before_discount" />
-                            <field name="amount_discount_pp" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="amount_after_discount" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="amount_discount_pp" attrs="{'readonly':[('state','!=','invoice')]}"/>
+                            <field name="amount_after_discount" attrs="{'readonly':[('state','!=','invoice')]}"/>
                             <field name="amount_untaxed" />
                             <field name="amount_taxed" />
                             <field name="amount_interest" />
@@ -159,19 +160,19 @@
                        </group>
 	                   <group>
                       		<group string="Cara Bayar">
-                      			<field name="installment_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-		                        <field name="qty_installment" attrs="{'readonly':[('state','!=','draft')]}"/>
-		                        <field name="disc_pp_percent" attrs="{'readonly':[('state','!=','draft')]}"/>
-		                        <field name="is_flat_installment" attrs="{'readonly':[('state','!=','draft')]}"/>
-		                        <field name="interest" attrs="{'readonly':[('state','!=','draft')]}"/>
+                      			<field name="installment_id" attrs="{'readonly':[('state','!=','invoice')]}"/>
+		                        <field name="qty_installment" attrs="{'readonly':[('state','!=','invoice')]}"/>
+		                        <field name="disc_pp_percent" attrs="{'readonly':[('state','!=','invoice')]}"/>
+		                        <field name="is_flat_installment" attrs="{'readonly':[('state','!=','invoice')]}"/>
+		                        <field name="interest" attrs="{'readonly':[('state','!=','invoice')]}"/>
                       		</group>
                       		<group string="Uang Muka">
-                      			 <field name="dp_method" attrs="{'readonly':[('state','!=','draft')]}"/>
-                          		 <field name="amount_dp" attrs="{'readonly':[('state','!=','draft')]}"/>
-                          		 <field name="total_amount_dp" attrs="{'readonly':[('state','!=','draft')]}"/>
-                         		 <field name="dp_qty" attrs="{'readonly':[('state','!=','draft')]}"/>
-                         		 <field name="is_flat_dp" attrs="{'readonly':[('state','!=','draft')]}"/>
-                          		 <field name="special_dp_case" attrs="{'readonly':[('state','!=','draft')]}"/>
+                      			 <field name="dp_method" attrs="{'readonly':[('state','!=','invoice')]}"/>
+                          		 <field name="amount_dp" attrs="{'readonly':[('state','!=','invoice')]}"/>
+                          		 <field name="total_amount_dp" attrs="{'readonly':[('state','!=','invoice')]}"/>
+                         		 <field name="dp_qty" attrs="{'readonly':[('state','!=','invoice')]}"/>
+                         		 <field name="is_flat_dp" attrs="{'readonly':[('state','!=','invoice')]}"/>
+                          		 <field name="special_dp_case" attrs="{'readonly':[('state','!=','invoice')]}"/>
                           		 <field name="dp_method_special" attrs="{'invisible':[('special_dp_case','=',False)]}"/>
                           		 <field name="amount_dp_special" attrs="{'invisible':[('special_dp_case','=',False)]}"/>
                           		 <field name="total_amount_dp_special" attrs="{'invisible':[('special_dp_case','=',False)]}"/>
@@ -179,10 +180,10 @@
                       		</group>
                       </group>
                       <group string="Booking Fee">
-                      	   <field name="booking_fee_amount" attrs="{'readonly':[('state','!=','draft')]}"/>
+                      	   <field name="booking_fee_amount" attrs="{'readonly':[('state','!=','invoice')]}"/>
                       </group>
                       <group name="Pembayaran" string="Pembayaran">
-                      		<button name="compute_installment" string="Hitung Cara Pembayaran" type="object" class="oe_highlight" states="draft"/>
+                      		<button name="compute_installment" string="Hitung Cara Pembayaran" type="object" class="oe_highlight" states="invoice"/>
                       </group>
                       <group>
                       		<field name="pembayaran" nolabel="1">
