@@ -109,7 +109,7 @@ class property_sale(models.Model):
         wizard_id = self.env['sale.advance.payment.inv'].create({'advance_payment_method':'all'})
         res = wizard_id.with_context(open_invoices = True,active_ids = sale_orders.id).create_invoices()
         account_invoice = self.env['account.invoice'].search([('id','=',res.get('res_id',False))],limit=1)
-        account_invoice.with_context(type = 'out_invoice', journal_type =  'sale').action_invoice_open()
+#        account_invoice.with_context(type = 'out_invoice', journal_type =  'sale').action_invoice_open()
         self.write({'invoice_id': account_invoice.id})
 
     @api.multi
