@@ -1,5 +1,5 @@
 from odoo import api,fields,models,_
-
+from odoo.exceptions import UserError
 
 confirm =[('draft','Draft'),('confirm','confirm'),('booking_fee_created','Booking Fee Created'),('cancel','cancel'),('sp','SP')]
 
