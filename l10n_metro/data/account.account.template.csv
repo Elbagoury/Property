@@ -1,0 +1,57 @@
+id,code,name,user_type_id:id,reconcile,chart_template_id:id
+1-110000,1-110000,CASH AND CASH EQUIVALENT,account.data_account_type_liquidity,TRUE,l10n_metro
+1-111000,1-111000,CASH,account.data_account_type_liquidity,TRUE,l10n_metro
+1-111001,1-111001,PETY CASH,account.data_account_type_liquidity,TRUE,l10n_metro
+1-112000,1-112000,BANK,account.data_account_type_liquidity,TRUE,l10n_metro
+1-112100,1-112100,BANK RUPIAH (IDR),account.data_account_type_liquidity,TRUE,l10n_metro
+1-112101,1-112101,MEGA BANK IDR A/C 010740011428731,account.data_account_type_liquidity,TRUE,l10n_metro
+1-112102,1-112102,MEGA BANK IDR A/C 010740011428747,account.data_account_type_liquidity,TRUE,l10n_metro
+1-112200,1-112200,BANK FOREIGN  CURRENCY (USD),account.data_account_type_liquidity,TRUE,l10n_metro
+1-112201,1-112201,MEGA BANK USD A/C 010742011078420,account.data_account_type_liquidity,TRUE,l10n_metro
+1-112202,1-112202,MEGA BANK USD A/C 010742011078436,account.data_account_type_liquidity,TRUE,l10n_metro
+1-112300,1-112300,BANK FOREIGN  CURRENCY (SGD),account.data_account_type_liquidity,TRUE,l10n_metro
+1-112301,1-112301,MEGA BANK SGD A/C 010741511000044,account.data_account_type_liquidity,TRUE,l10n_metro
+1-112302,1-112302,MEGA BANK SGD A/C 010741511000050,account.data_account_type_liquidity,TRUE,l10n_metro
+1-113000,1-113000,FD (FIXED DEPOSIT),account.data_account_type_liquidity,TRUE,l10n_metro
+1-113001,1-113001,MEGA BANK USD FD,account.data_account_type_liquidity,TRUE,l10n_metro
+1-114000,1-114000,FD (FIXED DEPOSIT) - Receivable,account.data_account_type_receivable,TRUE,l10n_metro
+1-114001,1-114001,MEGA BANK USD FD INTEREST RECEIVABLE,account.data_account_type_receivable,TRUE,l10n_metro
+1-115000,1-115000,INVENTORIES,account.data_account_type_current_assets,FALSE,l10n_metro
+1-115001,1-115001,PROPERTIES HELD FOR SALES,account.data_account_type_current_assets,FALSE,l10n_metro
+1-116000,1-116000,PREPAID TAXES,account.data_account_type_prepayments,FALSE,l10n_metro
+1-116001,1-116001,VAT IN,account.data_account_type_prepayments,FALSE,l10n_metro
+1-116002,1-116002,VAT OUT,account.data_account_type_prepayments,FALSE,l10n_metro
+1-117000,1-117000,PREPAID EXPENSES,account.data_account_type_prepayments,FALSE,l10n_metro
+1-118000,1-118000,ADVANCES,account.data_account_type_prepayments,FALSE,l10n_metro
+1-119001,1-119001,SALES RECEIVABLE,account.data_account_type_receivable,TRUE,l10n_metro
+1-221001,1-221001,INVENTORIES,account.data_account_type_non_current_assets,FALSE,l10n_metro
+1-221002,1-221002,PREPAID EXPENSES,account.data_account_type_non_current_assets,FALSE,l10n_metro
+1-221003,1-221003,OTHER FINANCIAL ASSETS,account.data_account_type_non_current_assets,FALSE,l10n_metro
+1-221004,1-221004,OTHERS,account.data_account_type_non_current_assets,FALSE,l10n_metro
+2-110000,2-110000,ADVANCES FROM METROBILT CONSTRUCTION,account.data_account_type_current_liabilities,FALSE,l10n_metro
+2-110001,2-110001,ADVANCE FROM METROBILT CONSTRUCTION (IDR),account.data_account_type_current_liabilities,FALSE,l10n_metro
+2-110002,2-110002,ADVANCE FROM SHAWCO,account.data_account_type_current_liabilities,FALSE,l10n_metro
+2-110003,2-110003,PURCHASE PAYABLE,account.data_account_type_payable,TRUE,l10n_metro
+2-120000,2-120000,PROV FOR ACCOUNTING FEES,account.data_account_type_current_liabilities,FALSE,l10n_metro
+2-130001,2-130001,TAX LIABILITIES Acl 23,account.data_account_type_current_liabilities,FALSE,l10n_metro
+2-200000,2-200000,LONG TERM LIABILITIES,account.data_account_type_non_current_liabilities,FALSE,l10n_metro
+3-000000,3-000000,EQUITY,account.data_account_type_equity,FALSE,l10n_metro
+3-110001,3-110001,ISSUED AND PAID UP SHARE CAPITAL,account.data_account_type_equity,FALSE,l10n_metro
+4-000000,4-000000,SALES AND REVENUES,account.data_account_type_revenue,FALSE,l10n_metro
+4-100000,4-100000,COST OF SALES AND DIRECT COSTS,account.data_account_type_revenue,FALSE,l10n_metro
+5-110000,5-110000,SELLING EXPENSES,account.data_account_type_expenses,FALSE,l10n_metro
+5-120000,5-120000,GENERAL AND ADMINISTRATIVE EXPENSES,account.data_account_type_expenses,FALSE,l10n_metro
+5-120001,5-120001,AUDIT FEE,account.data_account_type_expenses,FALSE,l10n_metro
+5-120002,5-120002,ACCOUNTING FEES,account.data_account_type_expenses,FALSE,l10n_metro
+5-120003,5-120003,BANK CHARGES,account.data_account_type_expenses,FALSE,l10n_metro
+5-120004,5-120004,BANK CHARGES-STAMP,account.data_account_type_expenses,FALSE,l10n_metro
+5-120005,5-120005,MANAGEMENT FEES,account.data_account_type_expenses,FALSE,l10n_metro
+5-120006,5-120006,COURIER CHARGES,account.data_account_type_expenses,FALSE,l10n_metro
+5-120007,5-120007,PROFESSIONAL FEES,account.data_account_type_expenses,FALSE,l10n_metro
+5-120008,5-120008,SECRETARIAL FEE,account.data_account_type_expenses,FALSE,l10n_metro
+6-120001,6-120001,P/L ON EXCHANGE,account.data_account_type_other_income,FALSE,l10n_metro
+6-120002,6-120002,INT INCOME FD USD,account.data_account_type_other_income,FALSE,l10n_metro
+6-120003,6-120003,INTEREST INCOME,account.data_account_type_other_income,FALSE,l10n_metro
+6-120004,6-120004,CURRENT ACCOUNT,account.data_account_type_other_income,FALSE,l10n_metro
+7-120001,7-120001,FINAL INCOME TAX PPH (Pasal 4 Ayat 2),account.data_account_type_expenses,FALSE,l10n_metro
+9-000000,9-000000,OTHER GAIN (LOSS) - NET,account.data_account_type_expenses,FALSE,l10n_metro
