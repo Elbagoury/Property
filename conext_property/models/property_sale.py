@@ -6,10 +6,11 @@ from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
 import odoo.addons.decimal_precision as dp
 
-confirm =[('draft','Draft'),('booking','Booking Confirmed'),('waiting_manager','Waiting Manager Approve'),('confirm','SP Confirm'),('done','Done'),('cancel','Batal')]
+confirm =[('draft','Draft'),('invoice','Invoice Confirmed'),('waiting_manager','Waiting Manager Approve'),('confirm','SP Confirm'),('done','Done'),('cancel','Batal')]
 class property_sale(models.Model):
     _name ="property.sale"
-    
+
+
     @api.model
     def _default_company_id(self):
         user = self.env['res.users'].browse(self.env.uid)
@@ -60,13 +61,11 @@ class property_sale(models.Model):
         self.amount_taxed = total_tax
         self.amount_untaxed = total_untaxed
         self.amount_final = total_untaxed + total_tax + bunga
-        
 
-
-    name                    = fields.Char(string="No.SPR/No. BFR", default="/")
+    name                    = fields.Char(string="No.Surat Pesanan", default="/")
     booking_id              = fields.Many2one(comodel_name="booking.fee", string="No. Pemesanan")
     partner_id              = fields.Many2one(comodel_name="res.partner", string="Nama Kustomer")
-    date_spr                = fields.Date(string="Tanggal SPR")
+    date_spr                = fields.Date(string="Tanggal SP")
     is_ppjb                 = fields.Boolean(string="Sudah PPJB")
     is_bast                 = fields.Boolean(string="Sudah BAST")
     notes                   = fields.Text(string="Catatan")
@@ -98,20 +97,28 @@ class property_sale(models.Model):
     amount_taxed = fields.Float(string='Total Pajak', store=True, readonly=True, compute='_compute_amount', track_visibility='always')
     amount_final = fields.Float(string='Total Keseluruhan', store=True, readonly=True, compute='_compute_amount', track_visibility='always')
     invoice_id          = fields.Many2one(comodel_name="account.invoice", string="ID Invoice")
-       
+    sale_order_id = fields.Many2one(comodel_name="sale.order", string="Sales Order")
+	
     @api.multi
-    def button_confirmed(self):
+    def button_invoice(self):
         seq = self.env['ir.sequence'].get('property_sale') or '/'   
         self['name'] = seq
-        self.state = confirm[1][0]
-        for line in self.pembayaran:
-            line.write({'state': 'confirm'})
- 
+        self.state = 'invoice'
+
+        sale_orders = self.booking_id.sale_order_id
+        wizard_id = self.env['sale.advance.payment.inv'].create({'advance_payment_method':'all'})
+        res = wizard_id.with_context(open_invoices = True,active_ids = sale_orders.id).create_invoices()
+        account_invoice = self.env['account.invoice'].search([('id','=',res.get('res_id',False))],limit=1)
+        account_invoice.with_context(type = 'out_invoice', journal_type =  'sale').action_invoice_open()
+        self.write({'invoice_id': account_invoice.id})
+
     @api.multi
-    def action_confirm_booking_fee(self):
+    def action_confirm(self):
         booking = self.env['booking.fee'].browse(self.booking_id.id)
         booking.write({'state': 'sp'})
         self.state = 'waiting_manager'
+        for line in self.pembayaran:
+            line.write({'state': 'confirm'})
 
     @api.multi
     def action_confirm_manager(self):
@@ -219,8 +226,7 @@ class property_sale(models.Model):
                 qty_special = self.dp_qty_special
                 residual_qty = qty_dp - qty_special
                 if amount_dp_special >= total_dp:
-                    raise osv.except_osv(_('Error !'), _('DP Spesial Tidak Boleh Melebihi DP'))
-
+                    raise UserError(_('DP Spesial Tidak Boleh Melebihi DP'))
                 for i in range(0, int(qty_special)):
                     if i == 0:
                         if is_flat_dp != True:
@@ -234,7 +240,6 @@ class property_sale(models.Model):
                     values = {
                             'order_id': self.id,
                             'date_due': date_inv.strftime("%Y-%m-%d"),
-
 							'invoice_id': self.invoice_id.id,
                             'description': i < (qty_dp - 1) and "Downpayment-%s" % (i + 1) or "Pelunasan Downpayment",
                             'amount_total': dp_payment + interest_kpa,
@@ -392,7 +397,7 @@ class property_sale(models.Model):
         if self.booking_id :
             property.append(((0,0,{'property_unit_id':self.booking_id.property_unit_id.id, 'description': self.booking_id.property_unit_id.name, 'unit_price': self.booking_id.property_unit_id.current_pricelist})))
             values['partner_id'] = self.booking_id.partner_id.id
-            values['invoice_id'] = self.booking_id.invoice_id.id
+            values['sale_order_id'] = self.booking_id.sale_order_id.id
             values['property_order_ids'] = property
             values['booking_fee_amount'] = self.booking_id.amount
         self.update(values)
